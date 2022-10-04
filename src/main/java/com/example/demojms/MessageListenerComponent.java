@@ -18,21 +18,31 @@ public class MessageListenerComponent implements ApplicationRunner {
         this.jmsTemplate = jmsTemplate;
         this.jmsTemplateTopic = jmsTemplateTopic;
     }
-
-    @JmsListener(destination = "queue.sample")
+    
+    @JmsListener(destination = "emailCorp.email")
     public void onReceiverQueue(String str) {
         System.out.println( str );
     }
-
-    @JmsListener(destination = "topic.sample", containerFactory = "jmsFactoryTopic")
-    public void onReceiverTopic(String str) {
-        System.out.println( str );
-    }
+	
+//    @JmsListener(destination = "topic.sample", containerFactory = "jmsFactoryTopic")
+//    public void onReceiverTopic(String str) {
+//        System.out.println( str );
+//    }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        jmsTemplate.convertAndSend("queue.sample", "{user: 'wolmir', usando: 'fila'}");
-        jmsTemplateTopic.convertAndSend("topic.sample", "{user: 'wolmir', usando: 'tópico'}");
+    	String email;
+    	
+    	
+    	
+    	for (int i = 0; i < 10; i++) {
+    		email = "{user: 'Rebeque " +  i + "' , usando: 'fila'}";
+            jmsTemplate.convertAndSend("emailCorp.email", email);
+			
+		}
+        //jmsTemplate.convertAndSend("emailCorp.email", "{user: 'Rebeque02', usando: 'fila'}");
+        // jmsTemplateTopic.convertAndSend("topic.sample", "{user: 'wolmir', usando: 'tópico'}");
+        System.out.println("Eu vou testar!!");
     }
 
 }
