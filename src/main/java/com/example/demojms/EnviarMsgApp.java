@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoJmsApplication {
+public class EnviarMsgApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoJmsApplication.class, args);
+		SpringApplication.run(EnviarMsgApp.class, args);
 	}
 
 }
